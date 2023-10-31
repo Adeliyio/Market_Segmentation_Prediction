@@ -1,4 +1,3 @@
-
 from sklearn import preprocessing 
 import streamlit as st
 import pandas as pd
@@ -14,20 +13,22 @@ final_model = 'https://github.com/Adeliyio/Market_Segmentation_Prediction/raw/ma
 response = requests.get(final_model)
 with open('finalmodel.sav', 'wb') as f:
     f.write(response.content)
+
 # Load the model
 filename = 'finalmodel.sav'
 
 try:
     loaded_model = pickle.load(open(filename, 'rb'))
 except FileNotFoundError:
-    st.error(f"Model file '{filename}' 
+    st.error(f"Model file '{filename}' not found!")
+    loaded_model = None
 
-df = pd.read_csv("ClusteredCD.csv")
-st.set_option('deprecation.showPyplotGlobalUse', False)
+if loaded_model:
+    df = pd.read_csv("ClusteredCD.csv")
+    st.set_option('deprecation.showPyplotGlobalUse', False)
 
-st.markdown('<style>body{background-color: darkblue;}</style>',unsafe_allow_html=True)
-st.title("Prediction")
-
+    st.markdown('<style>body{background-color: darkblue;}</style>',unsafe_allow_html=True)
+    st.title("Prediction")
 with st.form("my_form"):
     balance=st.number_input(label='Balance',step=0.001,format="%.6f")
     balance_frequency=st.number_input(label='Balance Frequency',step=0.001,format="%.6f")
