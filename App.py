@@ -7,8 +7,25 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pickle
 
+
+import streamlit as st
+import pickle
+import requests
+
+# Download the model file from GitHub
+final_model = 'https://github.com/Adeliyio/Market_Segmentation_Prediction/raw/main/finalmodel.sav'
+
+response = requests.get(final_model)
+with open('finalmodel.sav', 'wb') as f:
+    f.write(response.content)
+# Load the model
 filename = 'finalmodel.sav'
-loaded_model = pickle.load(open(filename, 'rb'))
+
+try:
+    loaded_model = pickle.load(open(filename, 'rb'))
+except FileNotFoundError:
+    st.error(f"Model file '{filename}' 
+
 df = pd.read_csv("ClusteredCD.csv")
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
