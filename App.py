@@ -6,10 +6,6 @@ import plotly.figure_factory as ff
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pickle
-
-
-import streamlit as st
-import pickle
 import requests
 
 # Download the model file from GitHub
