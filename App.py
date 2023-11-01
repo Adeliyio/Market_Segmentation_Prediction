@@ -28,7 +28,7 @@ if loaded_model:
     st.set_option('deprecation.showPyplotGlobalUse', False)
 
     st.markdown('<style>body{background-color: darkblue;}</style>',unsafe_allow_html=True)
-    st.title("Prediction")
+    st.title("Market Segmentation Prediction")
 with st.form("my_form"):
     balance=st.number_input(label='Balance',step=0.001,format="%.6f")
     balance_frequency=st.number_input(label='Balance Frequency',step=0.001,format="%.6f")
